@@ -1,5 +1,5 @@
 class DiscountedItem
-  attr_accessor :name, :unit_price, :discounted_price, :discount_quantity
+  attr_reader :name, :unit_price, :discounted_price, :discount_quantity
 
   def initialize(name, unit_price, discounted_price, discount_quantity)
     @name = name
