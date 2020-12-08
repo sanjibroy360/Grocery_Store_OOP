@@ -1,16 +1,43 @@
+require "terminal-table"
+
 class Billing
   def initialize(orders)
-    @orders = orders
+    @orders = orders.tally
+    @total_amount = 0
+    @saved_amount = 0
+    @receipt_table_data = []
+  end
+
+  def print_table
+    table = Terminal::Table.new :headings => ["Item", "Quantity", "Price"], :rows => @receipt_table_data
+    table.style = {
+      width: 45,
+      border_x: "-",
+      border_i: "",
+      border_y: "",
+      border_top: false,
+      border_bottom: false,
+      all_separators: false,
+    }
+    table
+  end
+
+  def print_receipt
+    str = "\n\nTotal price : $#{@total_amount}", "You saved $#{@saved_amount} today.\n\n"
+    puts "\n", print_table, str
   end
 
   def receipt
-    item_sold = @orders.tally
-    total_amount, saved_amount = item_sold.keys.reduce([0, 0]) do |amounts, item_name|
-      total_price, saved_price = GroceryStore::MENU[item_name.to_sym].buy(item_sold[item_name])
+    total_amount, saved_amount = @orders.keys.reduce([0, 0]) do |amounts, item_name|
+      total_price, saved_price = GroceryStore::MENU[item_name.to_sym].purchase(@orders[item_name])
       amounts[0] += total_price
       amounts[1] += saved_price
+
+      @receipt_table_data << [item_name.capitalize, @orders[item_name], "$#{total_price.round(2)}"]
       amounts
     end
-    p total_amount.round(2), saved_amount.round(2)
+    @total_amount = total_amount.round(2)
+    @saved_amount = saved_amount.round(2)
+    print_receipt
   end
 end

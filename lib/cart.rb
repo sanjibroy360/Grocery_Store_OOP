@@ -8,13 +8,12 @@ class Cart
     @orders = []
   end
 
-  def checkout(billing: Billing )
+  def checkout(billing: Billing)
     if (@orders.length > 0)
-        billing.new(@orders).receipt
-        
-      else
-        puts "No order has been placed."
-      end
+      billing.new(@orders).receipt
+    else
+      puts "No order has been placed."
+    end
   end
 
   def add_to_cart(ordered_items)
@@ -23,6 +22,3 @@ class Cart
     checkout
   end
 end
-
-crt = Cart.new
-crt.take_order
