@@ -7,6 +7,6 @@ class GroceryItem
       DiscountedItem
     else
       NonDiscountedItem
-    end.new(name, unit_price, discounted_price = 0, discount_quantity = 0)
+    end.new(name, unit_price, discounted_price, discount_quantity)
   end
 end
