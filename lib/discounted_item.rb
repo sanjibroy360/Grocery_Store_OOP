@@ -17,7 +17,7 @@ class DiscountedItem
     quantity * @unit_price
   end
 
-  def buy(quantity)
+  def purchase(quantity)
     total_price = total_amount(quantity)
     actual_price = actual_amount(quantity)
     saved_amount = actual_price - total_price

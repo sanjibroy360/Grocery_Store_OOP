@@ -6,7 +6,7 @@ class NonDiscountedItem
     @unit_price = unit_price
   end
 
-  def buy(quantity)
-    [quantity * @unit_price, 0]
+  def purchase(quantity)
+    [(quantity * @unit_price), 0]
   end
 end
