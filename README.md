@@ -3,7 +3,7 @@
 ## Getting started
 
 - Clone the repo using ```git clone https://github.com/sanjibroy360/Grocery_Store_OOP.git```.
-- Then install all the dependencies using ```sudo gem install terminal-table```
+- Then install the dependency using ```sudo gem install terminal-table```
 - Then run the program using ```ruby run_program.rb```
 
 ## Output
